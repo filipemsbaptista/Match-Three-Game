@@ -8,25 +8,37 @@
 
 #include "Sprite.h"
 
-Sprite::Sprite(string spriteFile, int posX, int posY, int width, int height){
-    
+Sprite::Sprite(){
+}
+
+Sprite::Sprite(SDL_Renderer* renderer, const char* spriteFile, int posX, int posY, int width, int height){
+    /*
+    //Load sprite image form file
     image = SDL_LoadBMP(spriteFile);
+  
+    // Part of the sprite file we want to draw on the screen
+    source.x = x;
+    source.y = x;
+    source.w = width;
+    source.h = height;
+    */
+    // --------------------
     
-    // Part of the bitmap that we want to draw
-    SDL_Rect source;
-    source.x = 24;
-    source.y = 63;
-    source.w = 65;
-    source.h = 44;
+    _renderer = renderer;
     
-    // Part of the screen we want to draw the sprite to
-    SDL_Rect destination;
+    //Create Texture    
+    img = IMG_LoadTexture(_renderer, spriteFile);
+    //Set texture properties
+    texture_rect.x = posX;  //the x coordinate
+    texture_rect.y = posY; // the y coordinate
+    texture_rect.w = width; //the width of the texture
+    texture_rect.h = height; //the height of the texture
+}
+
+
+void Sprite::draw(int screenX, int screenY){
+    texture_rect.x = screenX;
+    texture_rect.y = screenY;
     
-    destination.x = 100;
-    destination.y = 100;
-    destination.w = 65;
-    destination.h = 44;
-    
-    SDL_BlitSurface(image, &source, screen, &destination);
-    
+    SDL_RenderCopy(_renderer, img, NULL, &texture_rect);
 }

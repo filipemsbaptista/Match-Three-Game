@@ -8,24 +8,26 @@
 
 #include "GameManager.h"
 
-GameManager::GameManager(){
+GameManager::GameManager() {
     window = nullptr;
-    width = 800;
-    height = 600;
-    
-    _board = Board(0,0, width, height);
+    width = 1024;
+    height = 768;
 }
 
 void GameManager::init(){
+    
     //Initialize SDL
     SDL_Init(SDL_INIT_EVERYTHING);
+    
     //Create window
     window = SDL_CreateWindow("Match 3 Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL);
+    renderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED);
     
+    //Game management variables
     quitGame = false;
     
     //Create game Board
-    _board.start();
+    _board = Board(renderer);
 }
 
 void GameManager::run(){
@@ -37,12 +39,10 @@ void GameManager::run(){
 }
 
 void GameManager::mainLoop(){
-    
     SDL_Event event;
-    
     while(!quitGame){
         
-        //Handle input
+        // --- INPUT ---
         SDL_PumpEvents();
         while (SDL_PollEvent(&event)){
             switch(event.type){
@@ -52,11 +52,21 @@ void GameManager::mainLoop(){
             }
         }
         
-        // --- UPDATE ---
-        //Board
+        // ---- UPDATE ----
         _board.update();
         
-        //--- DRAW ---
+        
+        // ---- DRAW ----
+        SDL_RenderClear(renderer); //Clear the renderer
+        
         _board.draw();
+        
+        SDL_RenderPresent(renderer); //Update the renderer
     }
+    
+    //Destroy Window
+    SDL_DestroyWindow(window);
+    //Quit SDL
+    SDL_Quit();
+    
 }

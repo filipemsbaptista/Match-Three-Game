@@ -8,23 +8,35 @@
 
 #ifndef Sprite_h
 #define Sprite_h
+#pragma once
 
 #include <iostream>
 #include <stdio.h>
 #include <SDL.h>
+#include <SDL_image.h>
 
 using namespace std;
 
 class Sprite {
 
 private:
-    SDL_Surface *image;
-    SDL_Rect rect;
+    //Renderer
+    SDL_Renderer* _renderer;
+    
     
     int x, y;
     
 public:
-    Sprite(string spriteFile, int posX, int posY, int width, int height);
+    Sprite();
+    Sprite(SDL_Renderer* renderer, const char* spriteFile, int posX, int posY, int width, int height);
+    
+    void draw(int screenX, int screenY);
+    
+    
+    //!!!!!!!!!  MOVE TO PRIVATE !!!!!!!!!!!!
+    //Texture
+    SDL_Texture* img;
+    SDL_Rect texture_rect;
 };
 
 #endif /* Sprite_hpp */

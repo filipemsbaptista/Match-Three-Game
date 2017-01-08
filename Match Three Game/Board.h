@@ -8,11 +8,9 @@
 
 #ifndef Board_h
 #define Board_h
-
 #pragma once
 
 #include <iostream>
-#include <stdio.h>
 #include <Gem.h>
 
 using namespace std;
@@ -21,17 +19,24 @@ class Board{
 
 public:
     Board();
-    Board(int posX, int posY, int width, int height);
-    
-    void start();
+    Board(SDL_Renderer* renderer);
     
     void update();
     
     void draw();
     
+    Sprite sprite;
+
 private:
-    int _posX, _posY, _width, _height;
+    //Gems matrix
     Gem _board [8][8];
+    
+    //Sprite
+    const char * spriteFile;
+    int spriteWidth, spriteHeight;
+    
+
+    int _posX, _posY, _width, _height;
 };
 
 #endif /* Board_h */

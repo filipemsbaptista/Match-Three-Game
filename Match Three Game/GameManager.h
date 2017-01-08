@@ -12,30 +12,31 @@
 #pragma once
 
 #include <SDL.h>
-
+#include <SDL_image.h>
 #include <Board.h>
 
 class GameManager {
 
 public:
     GameManager();
-    
     void init();
-
     void run();
-    
-    void mainLoop();
-    
     
 private:
     //Window variables
     SDL_Window* window;
+    SDL_Surface* windowSurface;
+    SDL_Renderer* renderer;
     int width, height;
     
+    //Game management variables
     bool quitGame;
     
     //Game board
     Board _board;
+    
+    //Main game loop
+    void mainLoop();
 };
 
 #endif /* GameManager_h */

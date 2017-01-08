@@ -9,27 +9,21 @@
 #include <Board.h>
 
 Board::Board(){
-
 }
 
-Board::Board(int posX, int posY, int width, int height){
-    _posX = posX;
-    _posY = posY;
-    _width = width;
-    _height = height;
-}
-
-void Board::start(){
+Board::Board(SDL_Renderer* renderer){
+    //Load Sprite
+    spriteWidth = 1024;
+    spriteHeight = 768;
+    sprite = Sprite(renderer, "/Users/filipemsbaptista/GIT/Match Three Game/Match Three Game/sprites/Backdrop13.jpg",
+                    0, 0, spriteWidth, spriteHeight);
+    
+    
     //Create random gems for each board cell
     for (int i = 0; i < 8; i++){
         for(int j = 0; j < 8; j++){
             _board[i][j] = Gem();
-        }
-    }
-    
-    //TODO: REMOVE THIS FUNCTION Print the board
-    for (int i = 0; i < 8; i++){
-        for(int j = 0; j < 8; j++){
+            _board[i][j].loadSprite(renderer);
             cout << "[" << _board[i][j].type << "]";
         }
         cout << endl;
@@ -41,6 +35,16 @@ void Board::update(){
 }
 
 void Board::draw(){
+    //Backdrop
+    sprite.draw(0, 0);
+    
+    //Board
     
     
+    //Gems
+    for (int i = 0; i < 8; i++){
+        for(int j = 0; j < 8; j++){
+            _board[i][j].draw(i, j);
+        }
+    }
 }
