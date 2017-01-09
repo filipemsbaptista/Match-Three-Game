@@ -46,6 +46,10 @@ void GameManager::mainLoop(){
         SDL_PumpEvents();
         while (SDL_PollEvent(&event)){
             switch(event.type){
+                case SDL_MOUSEBUTTONDOWN:
+                    _board.processInput(event.button.x, event.button.y);
+                    break;
+                    
                 case SDL_QUIT:
                     quitGame = true;
                     break;

@@ -29,7 +29,7 @@ private:
     
     Sprite sprite;
     const char * spriteFile;
-    int spriteSize;
+    int spriteSize, spriteOffsetX, spriteOffsetY;
 };
 
 #endif /* Gem_h */

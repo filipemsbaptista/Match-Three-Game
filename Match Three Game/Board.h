@@ -22,21 +22,25 @@ public:
     Board(SDL_Renderer* renderer);
     
     void update();
-    
     void draw();
+    void processInput(int mouseX, int mouseY);
     
-    Sprite sprite;
 
 private:
     //Gems matrix
     Gem _board [8][8];
-    
+    //Board management variables
+    int currentRow, currentColumn, selectedColumn, selectedRow;
+    bool swappingGems;
+    Gem currentGem;
+
+    void swapGems();
+
     //Sprite
+    Sprite sprite;
     const char * spriteFile;
     int spriteWidth, spriteHeight;
     
-
-    int _posX, _posY, _width, _height;
 };
 
 #endif /* Board_h */
