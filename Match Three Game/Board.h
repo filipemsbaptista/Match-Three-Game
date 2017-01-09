@@ -35,6 +35,7 @@ private:
     Gem currentGem;
 
     void swapGems();
+    bool orthogonalSwipe(int x, int y, int a, int b);
 
     //Sprite
     Sprite sprite;

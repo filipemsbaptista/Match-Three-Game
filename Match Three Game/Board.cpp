@@ -76,8 +76,9 @@ void Board::swapGems(){
         
         currentGem = _board[selectedRow][selectedColumn];
     } else {
-        //Swap gems if dealing with neighboring cells
-        if(abs(selectedRow - currentRow) <=1 && abs(selectedColumn - currentColumn)<=1){
+        //Swap gems if dealing with orthognal neighboring cells
+        if(abs(selectedRow - currentRow) <= 1 && abs(selectedColumn - currentColumn)<= 1 &&
+           orthogonalSwipe(selectedRow, selectedColumn, currentRow, currentColumn) ){
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //!!! TODO: Drag sprites from one cell to the other !!!
             // insert code here . . .
@@ -89,8 +90,14 @@ void Board::swapGems(){
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //!!! TODO: Check if there's a 3-match, if not then redo animation and swap back !!!
             // insert code here . . .
-            
         }
         cout << "(" << selectedRow << ", " << selectedColumn << ") <-> (" << currentRow << ", " << currentColumn << ")" << endl;
     }
+}
+
+bool Board::orthogonalSwipe(int x, int y, int a, int b){
+    if((abs(x - a) > 0 && abs(y - b) == 0) || (abs(x - a) ==0 && abs(y - b) > 0)){
+        return true;
+    }
+    return false;
 }
