@@ -31,11 +31,11 @@ private:
     Gem _board [8][8];
     //Board management variables
     int currentRow, currentColumn, selectedColumn, selectedRow;
-    bool swappingGems;
     Gem currentGem;
-
-    void swapGems();
-    bool orthogonalSwipe(int x, int y, int a, int b);
+    
+    bool swappingGems, foundMatch;
+    void swapGems(), findDestroyMatches(), dropColumns();
+    bool matchingSwap(int i, int j), orthogonalSwipe(int x, int y, int a, int b);
 
     //Sprite
     Sprite sprite;

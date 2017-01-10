@@ -24,6 +24,7 @@ public:
     
     int type;
     
+    bool destroyed;
 private:
     int column, row;
     
