@@ -33,7 +33,7 @@ private:
     int currentRow, currentColumn, selectedColumn, selectedRow;
     Gem currentGem;
     
-    bool swappingGems, foundMatch;
+    bool swappingGems, destroyGems;
     void swapGems(), findDestroyMatches(), dropColumns();
     bool matchingSwap(int i, int j), orthogonalSwipe(int x, int y, int a, int b);
 
