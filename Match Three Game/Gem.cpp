@@ -33,12 +33,15 @@ void Gem::loadSprite(SDL_Renderer* renderer){
     sprite = Sprite(renderer, spriteFile, 0, 0, spriteSize, spriteSize);
 }
 
-void Gem::update(){
+void Gem::update(int row, int col){
+    _row = row;
+    _column = col;
     
+    posX = _column * spriteSize + spriteOffsetX;
+    posY = _row * spriteSize + spriteOffsetY;
 }
 
 void Gem::draw(){
     //Draw sprite according to its position on the board (matrix's row and column)
-    //if (!destroyed)
-    sprite.draw(_column * spriteSize + spriteOffsetX, _row * spriteSize + spriteOffsetY);
+    sprite.draw(posX, posY);
 }

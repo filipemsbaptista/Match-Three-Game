@@ -36,19 +36,11 @@ Board::Board(SDL_Renderer* renderer){
     swappingGems = false;
 
     //Check if there are initial matches
-    //findDestroyMatches();
+    findDestroyMatches();
 }
 
 void Board::update(){
-    /*
-    for (int i = 0; i < 8; i++){
-        for(int j = 0; j < 8; j++){
-            if( _board[i][j].sprite.img == nullptr){
-                cout << "No image found !!!!!!! " << endl;
-            }
-        }
-    }
-     */
+    
 }
 
 void Board::draw(){
@@ -77,13 +69,8 @@ void Board::processInput( int mouseX, int mouseY){
         //Handle gems swapping
         swapGems();
         
-        
-        //Update gems state
-        for(int i = 0; i < 8; i++)
-            for (int j = 0; j < 8; j++){
-                _board[i][j]._row = i; _board[i][j]._column = j;
-            }
-        
+       
+        /*
         //Print hceck state
         for(int i = 0; i < 8; i++)
             for (int j = 0; j < 8; j++){
@@ -94,6 +81,7 @@ void Board::processInput( int mouseX, int mouseY){
                 if(_board[i][j]._row != i || _board[i][j]._column != j)
                     cout << " On cell (" << i << ", " << j << ")" << endl;
             } cout << endl;
+         */
     }
 }
 
@@ -215,6 +203,14 @@ void Board::findDestroyMatches(){
         
             //cout << "AFTER DROP !" << endl;
             printBoard();
+            
+            
+            //Update gems own row and column references
+            for(int i = 0; i < 8; i++)
+                for (int j = 0; j < 8; j++){
+                    _board[i][j].update(i , j);
+                }
+            
         }
     }
 }

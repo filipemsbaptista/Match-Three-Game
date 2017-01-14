@@ -21,7 +21,7 @@ public:
     Gem();
     Gem(int row, int col);
     void loadSprite(SDL_Renderer* renderer);
-    void update();
+    void update(int row, int col);
     void draw();
     
     int type;
