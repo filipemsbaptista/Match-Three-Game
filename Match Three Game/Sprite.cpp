@@ -26,8 +26,9 @@ Sprite::Sprite(SDL_Renderer* renderer, const char* spriteFile, int posX, int pos
     
     _renderer = renderer;
     
-    //Create Texture    
-    img = IMG_LoadTexture(_renderer, spriteFile);
+    //Create Texture
+    file = spriteFile;
+    img = IMG_LoadTexture(_renderer, file);
     //Set texture properties
     texture_rect.x = posX;  //the x coordinate
     texture_rect.y = posY; // the y coordinate

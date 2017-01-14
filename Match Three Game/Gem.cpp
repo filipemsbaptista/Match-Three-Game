@@ -8,7 +8,10 @@
 
 #include <Gem.h>
 
-Gem::Gem() : sprite(){
+Gem::Gem(){
+}
+
+Gem::Gem(int row, int col) : sprite(){
     //Generate a random gem type
     type = rand() % 5;
     destroyed = false;
@@ -19,14 +22,23 @@ Gem::Gem() : sprite(){
     spriteOffsetX = (1024 - spriteSize * 8) / 2;
     spriteOffsetY = (768 - spriteSize * 8) / 2;
     
+    _row = row;
+    _column = col;
+    
+    posX = _column * spriteSize + spriteOffsetX;
+    posY = _row * spriteSize + spriteOffsetY;
 }
 
 void Gem::loadSprite(SDL_Renderer* renderer){
     sprite = Sprite(renderer, spriteFile, 0, 0, spriteSize, spriteSize);
 }
 
-void Gem::draw(int row, int col){
+void Gem::update(){
+    
+}
+
+void Gem::draw(){
     //Draw sprite according to its position on the board (matrix's row and column)
-    if(!destroyed)
-        sprite.draw(row * spriteSize + spriteOffsetX, col * spriteSize + spriteOffsetY);
+    //if (!destroyed)
+    sprite.draw(_column * spriteSize + spriteOffsetX, _row * spriteSize + spriteOffsetY);
 }

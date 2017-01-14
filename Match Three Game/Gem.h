@@ -19,18 +19,25 @@ class Gem {
 
 public:
     Gem();
+    Gem(int row, int col);
     void loadSprite(SDL_Renderer* renderer);
-    void draw(int row, int col);
+    void update();
+    void draw();
     
     int type;
     
     bool destroyed;
-private:
-    int column, row;
+    
+    int posX, posY, destX, destY;
     
     Sprite sprite;
     const char * spriteFile;
     int spriteSize, spriteOffsetX, spriteOffsetY;
+    
+    int _column, _row;
+
+private:
+   
 };
 
 #endif /* Gem_h */

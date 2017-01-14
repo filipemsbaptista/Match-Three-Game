@@ -27,6 +27,7 @@ public:
     
 
 private:
+    SDL_Renderer* _renderer;
     //Gems matrix
     Gem _board [8][8];
     //Board management variables
@@ -37,6 +38,8 @@ private:
     void swapGems(), findDestroyMatches(), dropColumns();
     bool matchingSwap(int i, int j), orthogonalSwipe(int x, int y, int a, int b);
 
+    void printBoard();
+    
     //Sprite
     Sprite sprite;
     const char * spriteFile;

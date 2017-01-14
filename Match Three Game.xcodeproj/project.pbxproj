@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		933D2CEA1E22B4FB007B286B /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 933D2CE91E22B4FB007B286B /* SDL2_image.framework */; };
 		933D2CEB1E22B509007B286B /* SDL2_image.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 933D2CE91E22B4FB007B286B /* SDL2_image.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9368C7521E2841750060A82B /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9368C7501E2841750060A82B /* SDL2_image.framework */; };
+		9368C7531E2841750060A82B /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9368C7511E2841750060A82B /* SDL2.framework */; };
 		93EBA2311E2146CB0005A186 /* SDL2.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 931FCF591E2117F700CDF030 /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		93EBA2321E21482F0005A186 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 931FCF511E2114F500CDF030 /* main.cpp */; };
-		93EBA2331E2149320005A186 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 931FCF591E2117F700CDF030 /* SDL2.framework */; };
 		93EBA2361E214CD80005A186 /* GameManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93EBA2341E214CD80005A186 /* GameManager.cpp */; };
 		93EBA23A1E2280BA0005A186 /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93EBA2391E2280BA0005A186 /* Board.cpp */; };
 		93EBA23D1E2289F20005A186 /* Gem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93EBA23C1E2289F20005A186 /* Gem.cpp */; };
@@ -38,6 +38,8 @@
 		931FCF511E2114F500CDF030 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		931FCF591E2117F700CDF030 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		933D2CE91E22B4FB007B286B /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
+		9368C7501E2841750060A82B /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = "../../Library/Developer/Xcode/DerivedData/Match_Three_Game-dfdrjebfkrtasggeylktwzhslbnd/Build/Products/Release/SDL2_image.framework"; sourceTree = "<group>"; };
+		9368C7511E2841750060A82B /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = "../../Library/Developer/Xcode/DerivedData/Match_Three_Game-dfdrjebfkrtasggeylktwzhslbnd/Build/Products/Release/SDL2.framework"; sourceTree = "<group>"; };
 		93EBA2341E214CD80005A186 /* GameManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameManager.cpp; sourceTree = "<group>"; };
 		93EBA2371E214D300005A186 /* GameManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
 		93EBA2381E2268DD0005A186 /* Board.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Board.h; sourceTree = "<group>"; };
@@ -53,8 +55,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				933D2CEA1E22B4FB007B286B /* SDL2_image.framework in Frameworks */,
-				93EBA2331E2149320005A186 /* SDL2.framework in Frameworks */,
+				9368C7521E2841750060A82B /* SDL2_image.framework in Frameworks */,
+				9368C7531E2841750060A82B /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +99,8 @@
 		931FCF581E2117F700CDF030 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9368C7501E2841750060A82B /* SDL2_image.framework */,
+				9368C7511E2841750060A82B /* SDL2.framework */,
 				933D2CE91E22B4FB007B286B /* SDL2_image.framework */,
 				931FCF591E2117F700CDF030 /* SDL2.framework */,
 			);
