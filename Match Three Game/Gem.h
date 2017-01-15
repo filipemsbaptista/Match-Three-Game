@@ -21,23 +21,24 @@ public:
     Gem();
     Gem(int row, int col);
     void loadSprite(SDL_Renderer* renderer);
-    void update(int row, int col);
+    void update();
     void draw();
     
+    void updatePos(int row, int col);
+    
+    
     int type;
-    
-    bool destroyed;
-    
+    int _column, _row;
     int posX, posY, destX, destY;
+    bool arrivedDest, destroyed;
     
     Sprite sprite;
     const char * spriteFile;
     int spriteSize, spriteOffsetX, spriteOffsetY;
-    
-    int _column, _row;
 
 private:
-   
+    int sign(int a, int b);
+    float speed;
 };
 
 #endif /* Gem_h */

@@ -2,7 +2,7 @@
 //  GameManager.cpp
 //  Match Three Game
 //
-//  Created by Filipe Baptista on 07/01/17.
+//  Created by Filipe Baptista on 08/01/17.
 //  Copyright © 2017 Filipe Baptista. All rights reserved.
 //
 

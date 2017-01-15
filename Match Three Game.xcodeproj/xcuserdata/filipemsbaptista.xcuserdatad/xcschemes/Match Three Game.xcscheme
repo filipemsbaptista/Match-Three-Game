@@ -47,6 +47,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
+      customWorkingDirectory = "/Users/filipemsbaptista/Library/Developer/Xcode/DerivedData/Match_Three_Game-dfdrjebfkrtasggeylktwzhslbnd/Build/Products/Release"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"

@@ -17,9 +17,12 @@ Board::Board(SDL_Renderer* renderer){
     //Load Sprite
     spriteWidth = 1024;
     spriteHeight = 768;
-    sprite = Sprite(_renderer, "/Users/filipemsbaptista/GIT/Match Three Game/Match Three Game/sprites/Backdrop13.jpg",
-                    0, 0, spriteWidth, spriteHeight);
+    spriteFile = "Resources/Backdrop13.jpg";
+    sprite = Sprite(_renderer, spriteFile, 0, 0, spriteWidth, spriteHeight);
+    cout << "[Background] Sprite File = " << spriteFile << endl;
     
+    //Load audio
+    music = Mix_LoadMUS( "audio/beat.wav" );
     
     //Create random gems for each board cell
     for (int i = 0; i < 8; i++){
@@ -40,7 +43,11 @@ Board::Board(SDL_Renderer* renderer){
 }
 
 void Board::update(){
-    
+    for(int i = 0; i < 8; i++){
+        for (int j = 0; j < 8; j++){
+            _board[i][j].update();
+        }
+    }
 }
 
 void Board::draw(){
@@ -65,23 +72,9 @@ void Board::processInput( int mouseX, int mouseY){
         currentColumn = (mouseX - offsetX) / 70;
         currentRow = (mouseY - offsetY) / 70;
     
-        cout << "Selected Cell = (" << currentRow <<",  " <<  currentColumn << ")  |  Type = " << _board[currentRow][currentColumn].type << endl;
+        cout << "Current Cell = (" << currentRow <<",  " <<  currentColumn << ")  |  Type = " << _board[currentRow][currentColumn].type << endl;
         //Handle gems swapping
         swapGems();
-        
-       
-        /*
-        //Print hceck state
-        for(int i = 0; i < 8; i++)
-            for (int j = 0; j < 8; j++){
-                if(_board[i][j]._row != i)
-                    cout << "Incoherent ROW found ! ";
-                if(_board[i][j]._column != j)
-                    cout << "Incoherent COLUMN found ! ";
-                if(_board[i][j]._row != i || _board[i][j]._column != j)
-                    cout << " On cell (" << i << ", " << j << ")" << endl;
-            } cout << endl;
-         */
     }
 }
 
@@ -99,29 +92,55 @@ void Board::swapGems(){
         if(orthogonalSwipe(selectedRow, selectedColumn, currentRow, currentColumn) ){
 
             if(!_board[selectedRow][selectedColumn].destroyed && !_board[currentRow][currentColumn].destroyed){
-                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                //!!! TODO: Drag sprites from one cell to the other !!!
-                // insert code here . . .
-                
+
                 //Swap gems positions on the board
                 _board[selectedRow][selectedColumn] = _board[currentRow][currentColumn];
                 _board[currentRow][currentColumn] = currentGem;
+                //And update their position references
+                _board[selectedRow][selectedColumn].updatePos(selectedRow, selectedColumn);
+                _board[currentRow][currentColumn].updatePos(currentRow, currentColumn);
                 
-                printBoard();
+                cout << "Swapping gems . . . . . . ." << endl;
+                animateSwap();
                 
-                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                //!!! Check if there's a 3-match, if not then redo animation and swap back !!!
+                
+                //Check if there's a 3-match, if not then undo and swap back !!!
                 if(matchingSwap(currentRow, currentColumn) || matchingSwap(selectedRow, selectedColumn)){
                     cout << "MATCH FOUND !" << endl;
                     findDestroyMatches();
                 } else {
-                    cout << "Undo swapping" << endl;
+                    cout << "Undoing swap . . . . . . ." << endl;
+                    //Undo swapping
                     _board[currentRow][currentColumn] = _board[selectedRow][selectedColumn];
                     _board[selectedRow][selectedColumn] = currentGem;
+                    //Reset gems position reference to their original ones
+                    _board[selectedRow][selectedColumn].updatePos(selectedRow, selectedColumn);
+                    _board[currentRow][currentColumn].updatePos(currentRow, currentColumn);
+                    
+                    animateSwap();
+
                 }
+                
             }
             cout << "(" << selectedRow << ", " << selectedColumn << ") <-> (" << currentRow << ", " << currentColumn << ")" << endl;
         }
+    }
+}
+
+void Board::animateSwap(){
+    animating = true;
+    _board[selectedRow][selectedColumn].arrivedDest = false;
+    _board[currentRow][currentColumn].arrivedDest = false;
+    
+    while (animating){
+        SDL_RenderClear(_renderer);
+        draw();
+        _board[selectedRow][selectedColumn].update(); _board[selectedRow][selectedColumn].draw();
+        _board[currentRow][currentColumn].update(); _board[currentRow][currentColumn].draw();
+        SDL_RenderPresent(_renderer);
+        
+        if(_board[selectedRow][selectedColumn].arrivedDest && _board[currentRow][currentColumn].arrivedDest)
+            animating = false;
     }
 }
 
@@ -208,7 +227,7 @@ void Board::findDestroyMatches(){
             //Update gems own row and column references
             for(int i = 0; i < 8; i++)
                 for (int j = 0; j < 8; j++){
-                    _board[i][j].update(i , j);
+                    _board[i][j].updatePos(i , j);
                 }
             
         }

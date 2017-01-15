@@ -7,10 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		933D2CEB1E22B509007B286B /* SDL2_image.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 933D2CE91E22B4FB007B286B /* SDL2_image.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		93339BD61E2BE3B400F26895 /* Backdrop13.jpg in Copy Files */ = {isa = PBXBuildFile; fileRef = 934D05AC1E2BE3400040F87E /* Backdrop13.jpg */; };
+		93339BD71E2BE3B400F26895 /* Color-1.png in Copy Files */ = {isa = PBXBuildFile; fileRef = 934D05AD1E2BE3400040F87E /* Color-1.png */; };
+		93339BD81E2BE3B400F26895 /* Color-2.png in Copy Files */ = {isa = PBXBuildFile; fileRef = 934D05AE1E2BE3400040F87E /* Color-2.png */; };
+		93339BD91E2BE3B400F26895 /* Color-3.png in Copy Files */ = {isa = PBXBuildFile; fileRef = 934D05AF1E2BE3400040F87E /* Color-3.png */; };
+		93339BDA1E2BE3B400F26895 /* Color-4.png in Copy Files */ = {isa = PBXBuildFile; fileRef = 934D05B01E2BE3400040F87E /* Color-4.png */; };
+		93339BDB1E2BE3B400F26895 /* Color-5.png in Copy Files */ = {isa = PBXBuildFile; fileRef = 934D05B11E2BE3400040F87E /* Color-5.png */; };
+		93339BDC1E2BE3B400F26895 /* bejeweled.mp3 in Copy Files */ = {isa = PBXBuildFile; fileRef = 934D05A91E2BE3110040F87E /* bejeweled.mp3 */; };
+		934D05A71E2BE21A0040F87E /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 934D05A61E2BE21A0040F87E /* SDL2_mixer.framework */; };
 		9368C7521E2841750060A82B /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9368C7501E2841750060A82B /* SDL2_image.framework */; };
 		9368C7531E2841750060A82B /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9368C7511E2841750060A82B /* SDL2.framework */; };
-		93EBA2311E2146CB0005A186 /* SDL2.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 931FCF591E2117F700CDF030 /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		93EBA2321E21482F0005A186 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 931FCF511E2114F500CDF030 /* main.cpp */; };
 		93EBA2361E214CD80005A186 /* GameManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93EBA2341E214CD80005A186 /* GameManager.cpp */; };
 		93EBA23A1E2280BA0005A186 /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93EBA2391E2280BA0005A186 /* Board.cpp */; };
@@ -22,11 +28,16 @@
 		931FCF4C1E2114F500CDF030 /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
-			dstPath = "";
-			dstSubfolderSpec = 10;
+			dstPath = Resources;
+			dstSubfolderSpec = 16;
 			files = (
-				933D2CEB1E22B509007B286B /* SDL2_image.framework in Copy Files */,
-				93EBA2311E2146CB0005A186 /* SDL2.framework in Copy Files */,
+				93339BD61E2BE3B400F26895 /* Backdrop13.jpg in Copy Files */,
+				93339BD71E2BE3B400F26895 /* Color-1.png in Copy Files */,
+				93339BD81E2BE3B400F26895 /* Color-2.png in Copy Files */,
+				93339BD91E2BE3B400F26895 /* Color-3.png in Copy Files */,
+				93339BDA1E2BE3B400F26895 /* Color-4.png in Copy Files */,
+				93339BDB1E2BE3B400F26895 /* Color-5.png in Copy Files */,
+				93339BDC1E2BE3B400F26895 /* bejeweled.mp3 in Copy Files */,
 			);
 			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -36,8 +47,14 @@
 /* Begin PBXFileReference section */
 		931FCF4E1E2114F500CDF030 /* Match Three Game */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Match Three Game"; sourceTree = BUILT_PRODUCTS_DIR; };
 		931FCF511E2114F500CDF030 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		931FCF591E2117F700CDF030 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
-		933D2CE91E22B4FB007B286B /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
+		934D05A61E2BE21A0040F87E /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = "../../Library/Developer/Xcode/DerivedData/Match_Three_Game-dfdrjebfkrtasggeylktwzhslbnd/Build/Products/Release/SDL2_mixer.framework"; sourceTree = "<group>"; };
+		934D05A91E2BE3110040F87E /* bejeweled.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bejeweled.mp3; sourceTree = "<group>"; };
+		934D05AC1E2BE3400040F87E /* Backdrop13.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Backdrop13.jpg; sourceTree = "<group>"; };
+		934D05AD1E2BE3400040F87E /* Color-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Color-1.png"; sourceTree = "<group>"; };
+		934D05AE1E2BE3400040F87E /* Color-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Color-2.png"; sourceTree = "<group>"; };
+		934D05AF1E2BE3400040F87E /* Color-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Color-3.png"; sourceTree = "<group>"; };
+		934D05B01E2BE3400040F87E /* Color-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Color-4.png"; sourceTree = "<group>"; };
+		934D05B11E2BE3400040F87E /* Color-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Color-5.png"; sourceTree = "<group>"; };
 		9368C7501E2841750060A82B /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = "../../Library/Developer/Xcode/DerivedData/Match_Three_Game-dfdrjebfkrtasggeylktwzhslbnd/Build/Products/Release/SDL2_image.framework"; sourceTree = "<group>"; };
 		9368C7511E2841750060A82B /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = "../../Library/Developer/Xcode/DerivedData/Match_Three_Game-dfdrjebfkrtasggeylktwzhslbnd/Build/Products/Release/SDL2.framework"; sourceTree = "<group>"; };
 		93EBA2341E214CD80005A186 /* GameManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameManager.cpp; sourceTree = "<group>"; };
@@ -57,6 +74,7 @@
 			files = (
 				9368C7521E2841750060A82B /* SDL2_image.framework in Frameworks */,
 				9368C7531E2841750060A82B /* SDL2.framework in Frameworks */,
+				934D05A71E2BE21A0040F87E /* SDL2_mixer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +84,8 @@
 		931FCF451E2114F500CDF030 = {
 			isa = PBXGroup;
 			children = (
+				934D05AB1E2BE3400040F87E /* sprites */,
+				934D05A81E2BE3110040F87E /* audio */,
 				931FCF501E2114F500CDF030 /* Match Three Game */,
 				931FCF4F1E2114F500CDF030 /* Products */,
 				931FCF581E2117F700CDF030 /* Frameworks */,
@@ -99,12 +119,34 @@
 		931FCF581E2117F700CDF030 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				934D05A61E2BE21A0040F87E /* SDL2_mixer.framework */,
 				9368C7501E2841750060A82B /* SDL2_image.framework */,
 				9368C7511E2841750060A82B /* SDL2.framework */,
-				933D2CE91E22B4FB007B286B /* SDL2_image.framework */,
-				931FCF591E2117F700CDF030 /* SDL2.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		934D05A81E2BE3110040F87E /* audio */ = {
+			isa = PBXGroup;
+			children = (
+				934D05A91E2BE3110040F87E /* bejeweled.mp3 */,
+			);
+			name = audio;
+			path = "Match Three Game/audio";
+			sourceTree = "<group>";
+		};
+		934D05AB1E2BE3400040F87E /* sprites */ = {
+			isa = PBXGroup;
+			children = (
+				934D05AC1E2BE3400040F87E /* Backdrop13.jpg */,
+				934D05AD1E2BE3400040F87E /* Color-1.png */,
+				934D05AE1E2BE3400040F87E /* Color-2.png */,
+				934D05AF1E2BE3400040F87E /* Color-3.png */,
+				934D05B01E2BE3400040F87E /* Color-4.png */,
+				934D05B11E2BE3400040F87E /* Color-5.png */,
+			);
+			name = sprites;
+			path = "Match Three Game/sprites";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,6 +316,7 @@
 				HEADER_SEARCH_PATHS = (
 					"/Library/Frameworks/SDL2.framework/headers/**",
 					"/Library/Frameworks/SDL2_image.framework/headers/**",
+					"/Library/Frameworks/SDL2_mixer.framework/headers/**",
 				);
 				LD_DYLIB_INSTALL_NAME = "";
 				ONLY_ACTIVE_ARCH = YES;
@@ -293,6 +336,7 @@
 				HEADER_SEARCH_PATHS = (
 					"/Library/Frameworks/SDL2.framework/headers/**",
 					"/Library/Frameworks/SDL2_image.framework/headers/**",
+					"/Library/Frameworks/SDL2_mixer.framework/headers/**",
 				);
 				LD_DYLIB_INSTALL_NAME = "";
 				ONLY_ACTIVE_ARCH = NO;

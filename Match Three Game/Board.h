@@ -11,6 +11,7 @@
 #pragma once
 
 #include <iostream>
+#include <SDL_mixer.h>
 #include <Gem.h>
 
 using namespace std;
@@ -35,16 +36,25 @@ private:
     Gem currentGem;
     
     bool swappingGems, destroyGems;
+    
     void swapGems(), findDestroyMatches(), dropColumns();
     bool matchingSwap(int i, int j), orthogonalSwipe(int x, int y, int a, int b);
-
     void printBoard();
+    
+    bool animating;
+    void animateSwap();
+    
+    
     
     //Sprite
     Sprite sprite;
     const char * spriteFile;
     int spriteWidth, spriteHeight;
     
+    
+    //Audio
+    Mix_Music *music;   //Background Music
+    Mix_Chunk *gemSelect, swap, match, invalid; //SFX
 };
 
 #endif /* Board_h */
