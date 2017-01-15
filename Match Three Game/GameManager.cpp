@@ -23,6 +23,24 @@ void GameManager::init(){
     window = SDL_CreateWindow("Match 3 Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL);
     renderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED);
     
+    //Initialize mixer
+    if(Mix_OpenAudio( MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+        cout << "ERROR: " << Mix_GetError() << endl;
+    
+    
+    //Load audio files
+    music = Mix_LoadMUS( "Resources/bejeweled.mp3" );     //Background Music
+    if(!music) {
+        printf("Mix_LoadMUS: %s\n", Mix_GetError());
+    }
+    
+    
+    //Play music
+    if (Mix_PlayMusic( music, -1 ) == -1)
+        cout << "ERROR: Couldn't play music file !" << endl;
+    
+    
+    
     //Game management variables
     quitGame = false;
     
@@ -49,7 +67,9 @@ void GameManager::mainLoop(){
                 case SDL_MOUSEBUTTONDOWN:
                     _board.processInput(event.button.x, event.button.y);
                     break;
-                    
+                case SDL_MOUSEBUTTONUP:
+                    _board.processInput(event.button.x, event.button.y);
+                    break;
                 case SDL_QUIT:
                     quitGame = true;
                     break;
@@ -66,11 +86,14 @@ void GameManager::mainLoop(){
         _board.draw();
         
         SDL_RenderPresent(renderer); //Update the renderer
+        
     }
     
     //Destroy Window
     SDL_DestroyWindow(window);
     //Quit SDL
+    IMG_Quit();
+    Mix_Quit();
     SDL_Quit();
     
 }

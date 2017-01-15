@@ -14,32 +14,46 @@ Board::Board(){
 Board::Board(SDL_Renderer* renderer){
     _renderer = renderer;
     
-    //Load Sprite
+    //Load Background Sprite
     spriteWidth = 1024;
     spriteHeight = 768;
     spriteFile = "Resources/Backdrop13.jpg";
     sprite = Sprite(_renderer, spriteFile, 0, 0, spriteWidth, spriteHeight);
-    cout << "[Background] Sprite File = " << spriteFile << endl;
     
-    //Load audio
-    music = Mix_LoadMUS( "audio/beat.wav" );
+    fontSize = 32;
+    //Load Score text
+    if(TTF_Init() == -1)
+        cout << "TTF_Init: " << SDL_GetError() << endl;
+    textFont = TTF_OpenFont("Resources/sansation.ttf", fontSize); //Define text font
+    if(textFont == nullptr)
+        cout << "TT_OpenFont: " << SDL_GetError() << endl;
+    textColor = {255, 255, 255}; // Text color
+    textSurface = TTF_RenderText_Solid(textFont, "Score : " , textColor);
+    if(textSurface == nullptr)
+        cout << "TT_RenderText_Solid: " << SDL_GetError() << endl;
+    
+    textRect.w = fontSize * 4; // controls the width of the rect
+    textRect.h = fontSize; // controls the height of the rect
+    textRect.x = spriteWidth / 2 - textRect.w / 2;  //controls the rect's x coordinate
+    textRect.y = 15; // controls the rect's y coordinte
     
     //Create random gems for each board cell
+    cout << "Generating board . . ." << endl;
     for (int i = 0; i < 8; i++){
         for(int j = 0; j < 8; j++){
             _board[i][j] = Gem(i, j);
             _board[i][j].loadSprite(_renderer);
         }
-        cout << endl;
     }
     
-    cout << "AT START" << endl;
     printBoard();
     
     swappingGems = false;
 
     //Check if there are initial matches
     findDestroyMatches();
+    
+    score = 0;
 }
 
 void Board::update(){
@@ -48,6 +62,10 @@ void Board::update(){
             _board[i][j].update();
         }
     }
+    
+    //Update score text
+    textSurface = TTF_RenderText_Solid(textFont, ("Score : " + to_string(score)).c_str(), textColor);
+    text = SDL_CreateTextureFromSurface(_renderer, textSurface); //Convert text into a texture
 }
 
 void Board::draw(){
@@ -60,6 +78,10 @@ void Board::draw(){
             _board[i][j].draw();
         }
     }
+    
+    //Text
+    SDL_RenderCopy(_renderer, text, NULL, &textRect);
+
 }
 
 void Board::processInput( int mouseX, int mouseY){
@@ -73,14 +95,17 @@ void Board::processInput( int mouseX, int mouseY){
         currentRow = (mouseY - offsetY) / 70;
     
         cout << "Current Cell = (" << currentRow <<",  " <<  currentColumn << ")  |  Type = " << _board[currentRow][currentColumn].type << endl;
+        
         //Handle gems swapping
         swapGems();
     }
 }
 
 void Board::swapGems(){
-    swappingGems = !swappingGems;
-    
+    //Change action type only if selecting a different gem
+    //if(selectedRow!= currentRow || selectedColumn != currentColumn)
+        swappingGems = !swappingGems;
+
     if(swappingGems){
         //Store currently selected gem into temp variable
         selectedRow = currentRow;
@@ -101,13 +126,24 @@ void Board::swapGems(){
                 _board[currentRow][currentColumn].updatePos(currentRow, currentColumn);
                 
                 cout << "Swapping gems . . . . . . ." << endl;
+                //Play swipe SFX
+                if(Mix_PlayChannel( -1, Mix_LoadWAV("Resources/swipe.mp3"), 0 ) == -1)
+                    cout << "ERROR: Couldn't SFX! " << SDL_GetError() << endl;
+                //Play swipe Animation
                 animateSwap();
                 
                 
                 //Check if there's a 3-match, if not then undo and swap back !!!
                 if(matchingSwap(currentRow, currentColumn) || matchingSwap(selectedRow, selectedColumn)){
+                    
                     cout << "MATCH FOUND !" << endl;
                     findDestroyMatches();
+                    
+                    //Play swipe SFX
+                    if(Mix_PlayChannel( -1, Mix_LoadWAV("Resources/match.mp3"), 0 ) == -1)
+                        cout << "ERROR: Couldn't SFX! " << SDL_GetError() << endl;
+                    
+                    printBoard();
                 } else {
                     cout << "Undoing swap . . . . . . ." << endl;
                     //Undo swapping
@@ -117,10 +153,14 @@ void Board::swapGems(){
                     _board[selectedRow][selectedColumn].updatePos(selectedRow, selectedColumn);
                     _board[currentRow][currentColumn].updatePos(currentRow, currentColumn);
                     
+                    //Play swipe SFX
+                    if(Mix_PlayChannel( -1, Mix_LoadWAV("Resources/swipe.mp3"), 0 ) == -1)
+                        cout << "ERROR: Couldn't SFX! " << SDL_GetError() << endl;
+                    //Play swipe Animation
                     animateSwap();
-
+                    
+                    swappingGems = false;
                 }
-                
             }
             cout << "(" << selectedRow << ", " << selectedColumn << ") <-> (" << currentRow << ", " << currentColumn << ")" << endl;
         }
@@ -164,7 +204,7 @@ void Board::findDestroyMatches(){
                         _board[i][j].destroyed = true;
                         _board[i+1][j].destroyed = true;
                         _board[i+2][j].destroyed = true;
-                    
+                        
                         //Check if theres a bigger match (>3)
                         a = 3;
                         while (foundMatch){
@@ -175,6 +215,8 @@ void Board::findDestroyMatches(){
                                 foundMatch = false;
                         }
                         i+= a - 1;
+                        //Update score
+                        score += a;
                     } else{
                         //Skip one column, since we know the next is equal but not part of a match
                         i++;
@@ -205,6 +247,8 @@ void Board::findDestroyMatches(){
                                 foundMatch = false;
                         }
                         j+=a-1;
+                        //Update score
+                        score += a;
                     } else{
                         //Skip one column
                         j++;
@@ -212,24 +256,17 @@ void Board::findDestroyMatches(){
                 }
             }
         }
+        
         //If any gem was destroyed, check for the necessary column drops in order to fill up the board
         if(destroyGems) {
-            cout << "DESTROY!" << endl;
-            //cout << "BEFORE DROP !" << endl;
-            printBoard();
             
             dropColumns();
         
-            //cout << "AFTER DROP !" << endl;
-            printBoard();
-            
-            
             //Update gems own row and column references
             for(int i = 0; i < 8; i++)
                 for (int j = 0; j < 8; j++){
                     _board[i][j].updatePos(i , j);
                 }
-            
         }
     }
 }
@@ -242,7 +279,6 @@ void Board::dropColumns(){
     for(int i = 0; i < 8; i++){
         for(int j = 0; j < 8; j++){
             if(_board[j][i].destroyed){ //Found empty cell on current column
-                cout << "Found empty cell on (" << i << ", " << j <<") !!!!" << endl;
                 for(int x = j; x > 0; x--){
                     _board[x][i] = _board[x-1][i];
                     _board[x][i].destroyed = false;

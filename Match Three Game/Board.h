@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include <SDL_mixer.h>
+#include <SDL_ttf.h>
 #include <Gem.h>
 
 using namespace std;
@@ -26,7 +27,6 @@ public:
     void draw();
     void processInput(int mouseX, int mouseY);
     
-
 private:
     SDL_Renderer* _renderer;
     //Gems matrix
@@ -34,7 +34,6 @@ private:
     //Board management variables
     int currentRow, currentColumn, selectedColumn, selectedRow;
     Gem currentGem;
-    
     bool swappingGems, destroyGems;
     
     void swapGems(), findDestroyMatches(), dropColumns();
@@ -44,17 +43,20 @@ private:
     bool animating;
     void animateSwap();
     
+    int score;
     
-    
-    //Sprite
+    //Background Image Sprite
     Sprite sprite;
     const char * spriteFile;
     int spriteWidth, spriteHeight;
     
-    
-    //Audio
-    Mix_Music *music;   //Background Music
-    Mix_Chunk *gemSelect, swap, match, invalid; //SFX
+    //Score Text
+    int fontSize;
+    TTF_Font* textFont;
+    SDL_Color textColor;
+    SDL_Surface* textSurface;
+    SDL_Texture* text;
+    SDL_Rect textRect;
 };
 
 #endif /* Board_h */

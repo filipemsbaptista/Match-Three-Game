@@ -17,6 +17,10 @@
 		934D05A71E2BE21A0040F87E /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 934D05A61E2BE21A0040F87E /* SDL2_mixer.framework */; };
 		9368C7521E2841750060A82B /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9368C7501E2841750060A82B /* SDL2_image.framework */; };
 		9368C7531E2841750060A82B /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9368C7511E2841750060A82B /* SDL2.framework */; };
+		93A3CF581E2BF7780076474E /* swipe.mp3 in Copy Files */ = {isa = PBXBuildFile; fileRef = 93A3CF571E2BF7780076474E /* swipe.mp3 */; };
+		93A3CF5A1E2C051F0076474E /* match.mp3 in Copy Files */ = {isa = PBXBuildFile; fileRef = 93A3CF591E2C051F0076474E /* match.mp3 */; };
+		93A3CF5C1E2C0DCD0076474E /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93A3CF5B1E2C0DCD0076474E /* SDL2_ttf.framework */; };
+		93A3CF6B1E2C2F140076474E /* sansation.ttf in Copy Files */ = {isa = PBXBuildFile; fileRef = 93A3CF6A1E2C2F140076474E /* sansation.ttf */; };
 		93EBA2321E21482F0005A186 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 931FCF511E2114F500CDF030 /* main.cpp */; };
 		93EBA2361E214CD80005A186 /* GameManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93EBA2341E214CD80005A186 /* GameManager.cpp */; };
 		93EBA23A1E2280BA0005A186 /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93EBA2391E2280BA0005A186 /* Board.cpp */; };
@@ -31,6 +35,9 @@
 			dstPath = Resources;
 			dstSubfolderSpec = 16;
 			files = (
+				93A3CF6B1E2C2F140076474E /* sansation.ttf in Copy Files */,
+				93A3CF5A1E2C051F0076474E /* match.mp3 in Copy Files */,
+				93A3CF581E2BF7780076474E /* swipe.mp3 in Copy Files */,
 				93339BD61E2BE3B400F26895 /* Backdrop13.jpg in Copy Files */,
 				93339BD71E2BE3B400F26895 /* Color-1.png in Copy Files */,
 				93339BD81E2BE3B400F26895 /* Color-2.png in Copy Files */,
@@ -57,6 +64,10 @@
 		934D05B11E2BE3400040F87E /* Color-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Color-5.png"; sourceTree = "<group>"; };
 		9368C7501E2841750060A82B /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = "../../Library/Developer/Xcode/DerivedData/Match_Three_Game-dfdrjebfkrtasggeylktwzhslbnd/Build/Products/Release/SDL2_image.framework"; sourceTree = "<group>"; };
 		9368C7511E2841750060A82B /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = "../../Library/Developer/Xcode/DerivedData/Match_Three_Game-dfdrjebfkrtasggeylktwzhslbnd/Build/Products/Release/SDL2.framework"; sourceTree = "<group>"; };
+		93A3CF571E2BF7780076474E /* swipe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = swipe.mp3; sourceTree = "<group>"; };
+		93A3CF591E2C051F0076474E /* match.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = match.mp3; sourceTree = "<group>"; };
+		93A3CF5B1E2C0DCD0076474E /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
+		93A3CF6A1E2C2F140076474E /* sansation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sansation.ttf; path = "Match Three Game/fonts/sansation.ttf"; sourceTree = "<group>"; };
 		93EBA2341E214CD80005A186 /* GameManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameManager.cpp; sourceTree = "<group>"; };
 		93EBA2371E214D300005A186 /* GameManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
 		93EBA2381E2268DD0005A186 /* Board.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Board.h; sourceTree = "<group>"; };
@@ -72,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93A3CF5C1E2C0DCD0076474E /* SDL2_ttf.framework in Frameworks */,
 				9368C7521E2841750060A82B /* SDL2_image.framework in Frameworks */,
 				9368C7531E2841750060A82B /* SDL2.framework in Frameworks */,
 				934D05A71E2BE21A0040F87E /* SDL2_mixer.framework in Frameworks */,
@@ -84,8 +96,9 @@
 		931FCF451E2114F500CDF030 = {
 			isa = PBXGroup;
 			children = (
-				934D05AB1E2BE3400040F87E /* sprites */,
 				934D05A81E2BE3110040F87E /* audio */,
+				93A3CF691E2C1E670076474E /* fonts */,
+				934D05AB1E2BE3400040F87E /* sprites */,
 				931FCF501E2114F500CDF030 /* Match Three Game */,
 				931FCF4F1E2114F500CDF030 /* Products */,
 				931FCF581E2117F700CDF030 /* Frameworks */,
@@ -119,6 +132,7 @@
 		931FCF581E2117F700CDF030 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				93A3CF5B1E2C0DCD0076474E /* SDL2_ttf.framework */,
 				934D05A61E2BE21A0040F87E /* SDL2_mixer.framework */,
 				9368C7501E2841750060A82B /* SDL2_image.framework */,
 				9368C7511E2841750060A82B /* SDL2.framework */,
@@ -130,6 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				934D05A91E2BE3110040F87E /* bejeweled.mp3 */,
+				93A3CF591E2C051F0076474E /* match.mp3 */,
+				93A3CF571E2BF7780076474E /* swipe.mp3 */,
 			);
 			name = audio;
 			path = "Match Three Game/audio";
@@ -147,6 +163,14 @@
 			);
 			name = sprites;
 			path = "Match Three Game/sprites";
+			sourceTree = "<group>";
+		};
+		93A3CF691E2C1E670076474E /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				93A3CF6A1E2C2F140076474E /* sansation.ttf */,
+			);
+			name = fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,6 +341,7 @@
 					"/Library/Frameworks/SDL2.framework/headers/**",
 					"/Library/Frameworks/SDL2_image.framework/headers/**",
 					"/Library/Frameworks/SDL2_mixer.framework/headers/**",
+					"/Library/Frameworks/SDL2_ttf.framework/headers/**",
 				);
 				LD_DYLIB_INSTALL_NAME = "";
 				ONLY_ACTIVE_ARCH = YES;
@@ -337,6 +362,7 @@
 					"/Library/Frameworks/SDL2.framework/headers/**",
 					"/Library/Frameworks/SDL2_image.framework/headers/**",
 					"/Library/Frameworks/SDL2_mixer.framework/headers/**",
+					"/Library/Frameworks/SDL2_ttf.framework/headers/**",
 				);
 				LD_DYLIB_INSTALL_NAME = "";
 				ONLY_ACTIVE_ARCH = NO;
