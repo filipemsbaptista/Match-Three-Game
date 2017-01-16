@@ -25,7 +25,9 @@ public:
     
     void update();
     void draw();
-    void processInput(int mouseX, int mouseY);
+    void processInput(int mouseX, int mouseY, bool click);
+    
+    
     
 private:
     SDL_Renderer* _renderer;
@@ -43,20 +45,23 @@ private:
     bool animating;
     void animateSwap();
     
-    int score;
     
     //Background Image Sprite
     Sprite sprite;
     const char * spriteFile;
     int spriteWidth, spriteHeight;
     
+    int score;
+    /*
     //Score Text
     int fontSize;
     TTF_Font* textFont;
-    SDL_Color textColor;
     SDL_Surface* textSurface;
+    SDL_Color textColor;
     SDL_Texture* text;
     SDL_Rect textRect;
+    const char *scoreText;
+     */
 };
 
 #endif /* Board_h */

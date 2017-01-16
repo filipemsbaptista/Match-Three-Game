@@ -29,6 +29,7 @@ private:
     SDL_Renderer* renderer;
     int width, height;
     
+    
     //Audio
     Mix_Music *music;   //Background Music
     Mix_Chunk *gemSelect, *swipe, *match, *invalid; //SFX

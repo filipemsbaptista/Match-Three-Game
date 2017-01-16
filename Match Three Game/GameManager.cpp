@@ -34,11 +34,11 @@ void GameManager::init(){
         printf("Mix_LoadMUS: %s\n", Mix_GetError());
     }
     
-    
+    /*
     //Play music
     if (Mix_PlayMusic( music, -1 ) == -1)
         cout << "ERROR: Couldn't play music file !" << endl;
-    
+    */
     
     
     //Game management variables
@@ -65,10 +65,10 @@ void GameManager::mainLoop(){
         while (SDL_PollEvent(&event)){
             switch(event.type){
                 case SDL_MOUSEBUTTONDOWN:
-                    _board.processInput(event.button.x, event.button.y);
+                    _board.processInput(event.button.x, event.button.y, true);
                     break;
                 case SDL_MOUSEBUTTONUP:
-                    _board.processInput(event.button.x, event.button.y);
+                    _board.processInput(event.button.x, event.button.y, false);
                     break;
                 case SDL_QUIT:
                     quitGame = true;
@@ -82,11 +82,10 @@ void GameManager::mainLoop(){
         
         // ---- DRAW ----
         SDL_RenderClear(renderer); //Clear the renderer
-        
+
         _board.draw();
         
         SDL_RenderPresent(renderer); //Update the renderer
-        
     }
     
     //Destroy Window
@@ -94,6 +93,7 @@ void GameManager::mainLoop(){
     //Quit SDL
     IMG_Quit();
     Mix_Quit();
+    TTF_Quit();
     SDL_Quit();
     
 }

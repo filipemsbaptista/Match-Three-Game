@@ -20,6 +20,7 @@ Board::Board(SDL_Renderer* renderer){
     spriteFile = "Resources/Backdrop13.jpg";
     sprite = Sprite(_renderer, spriteFile, 0, 0, spriteWidth, spriteHeight);
     
+    /*
     fontSize = 32;
     //Load Score text
     if(TTF_Init() == -1)
@@ -36,6 +37,7 @@ Board::Board(SDL_Renderer* renderer){
     textRect.h = fontSize; // controls the height of the rect
     textRect.x = spriteWidth / 2 - textRect.w / 2;  //controls the rect's x coordinate
     textRect.y = 15; // controls the rect's y coordinte
+    */
     
     //Create random gems for each board cell
     cout << "Generating board . . ." << endl;
@@ -63,9 +65,6 @@ void Board::update(){
         }
     }
     
-    //Update score text
-    textSurface = TTF_RenderText_Solid(textFont, ("Score : " + to_string(score)).c_str(), textColor);
-    text = SDL_CreateTextureFromSurface(_renderer, textSurface); //Convert text into a texture
 }
 
 void Board::draw(){
@@ -78,34 +77,41 @@ void Board::draw(){
             _board[i][j].draw();
         }
     }
-    
-    //Text
+    /*  !!! This was discarded due to memory leaks caused by SDL_TTF !!!
+    //Score Text
+    scoreText =("Score : " + to_string(score)).c_str();
+    textSurface = TTF_RenderText_Solid(textFont, scoreText, textColor);
+    text = SDL_CreateTextureFromSurface(_renderer, textSurface); //Convert text into a texture
     SDL_RenderCopy(_renderer, text, NULL, &textRect);
-
+     */
 }
 
-void Board::processInput( int mouseX, int mouseY){
+void Board::processInput( int mouseX, int mouseY, bool click){
     int offsetX = (1024 - 70 * 8) / 2;
     int offsetY = (768 - 70 * 8) / 2;
     
     //Only handle mouse clicks if inside the board area
     if(mouseX > offsetX && mouseX < 1024 - offsetX && mouseY > offsetY && mouseY < 768 - offsetY){
-        // Store currently selected cell
-        currentColumn = (mouseX - offsetX) / 70;
-        currentRow = (mouseY - offsetY) / 70;
+        //If clicked in a new cell
+        if((mouseX - offsetX) / 70 != currentColumn || (mouseY - offsetY) / 70 != currentRow || click){
+            // Store currently selected cell
+            currentColumn = (mouseX - offsetX) / 70;
+            currentRow = (mouseY - offsetY) / 70;
     
-        cout << "Current Cell = (" << currentRow <<",  " <<  currentColumn << ")  |  Type = " << _board[currentRow][currentColumn].type << endl;
+            cout << "Current Cell = (" << currentRow <<",  " <<  currentColumn << ")  |  Type = " << _board[currentRow][currentColumn].type << endl;
         
-        //Handle gems swapping
-        swapGems();
+            //Handle gems swapping
+            swapGems();
+        }
     }
 }
 
 void Board::swapGems(){
     //Change action type only if selecting a different gem
-    //if(selectedRow!= currentRow || selectedColumn != currentColumn)
-        swappingGems = !swappingGems;
-
+    swappingGems = !swappingGems;
+    
+    cout << "Swapping gems = " << swappingGems << endl;
+    
     if(swappingGems){
         //Store currently selected gem into temp variable
         selectedRow = currentRow;
