@@ -38,7 +38,6 @@ void Gem::loadSprite(SDL_Renderer* renderer){
 }
 
 void Gem::update(){
-    
     //Check if gem is at the supposed position
     if(posX!= destX || posY != destY){
         arrivedDest = false;
@@ -65,11 +64,6 @@ void Gem::updatePos(int row, int col){
     //Set gem destination
     destX = _column * spriteSize + spriteOffsetX;
     destY = _row * spriteSize + spriteOffsetY;
-    
-    /*
-     posX = posX + destX * sign(posX, destX) * speed;
-     posY = posY + destY * sign(posY, destY) * speed;
-     */
 }
 
 

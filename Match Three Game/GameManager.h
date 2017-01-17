@@ -25,14 +25,13 @@ public:
 private:
     //Window variables
     SDL_Window* window;
-    SDL_Surface* windowSurface;
     SDL_Renderer* renderer;
     int width, height;
     
     
     //Audio
     Mix_Music *music;   //Background Music
-    Mix_Chunk *gemSelect, *swipe, *match, *invalid; //SFX
+    Mix_Chunk *swipe, *match; //SFX
     
     //Game management variables
     bool quitGame;

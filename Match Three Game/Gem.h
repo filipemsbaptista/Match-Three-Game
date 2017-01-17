@@ -23,22 +23,24 @@ public:
     void loadSprite(SDL_Renderer* renderer);
     void update();
     void draw();
-    
     void updatePos(int row, int col);
     
-    
+    //Type and position variables
     int type;
     int _column, _row;
     int posX, posY, destX, destY;
+    //Status variables
     bool arrivedDest, destroyed;
-    
-    Sprite sprite;
-    const char * spriteFile;
-    int spriteSize, spriteOffsetX, spriteOffsetY;
 
 private:
     int sign(int a, int b);
-    float speed;
+    
+    int speed;
+    
+    //Sprite
+    Sprite sprite;
+    const char * spriteFile;
+    int spriteSize, spriteOffsetX, spriteOffsetY;
 };
 
 #endif /* Gem_h */

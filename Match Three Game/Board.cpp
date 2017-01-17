@@ -20,25 +20,7 @@ Board::Board(SDL_Renderer* renderer){
     spriteFile = "Resources/Backdrop13.jpg";
     sprite = Sprite(_renderer, spriteFile, 0, 0, spriteWidth, spriteHeight);
     
-    /*
-    fontSize = 32;
-    //Load Score text
-    if(TTF_Init() == -1)
-        cout << "TTF_Init: " << SDL_GetError() << endl;
-    textFont = TTF_OpenFont("Resources/sansation.ttf", fontSize); //Define text font
-    if(textFont == nullptr)
-        cout << "TT_OpenFont: " << SDL_GetError() << endl;
-    textColor = {255, 255, 255}; // Text color
-    textSurface = TTF_RenderText_Solid(textFont, "Score : " , textColor);
-    if(textSurface == nullptr)
-        cout << "TT_RenderText_Solid: " << SDL_GetError() << endl;
-    
-    textRect.w = fontSize * 4; // controls the width of the rect
-    textRect.h = fontSize; // controls the height of the rect
-    textRect.x = spriteWidth / 2 - textRect.w / 2;  //controls the rect's x coordinate
-    textRect.y = 15; // controls the rect's y coordinte
-    */
-    
+
     //Create random gems for each board cell
     cout << "Generating board . . ." << endl;
     for (int i = 0; i < 8; i++){
@@ -55,30 +37,58 @@ Board::Board(SDL_Renderer* renderer){
     //Check if there are initial matches
     findDestroyMatches();
     
+    //Set initial score
     score = 0;
+    
+    /*
+     !!! Text rendering was discarded due to memory leaks caused by SDL_TTF !!!
+     !!!!!!!!!!!!!!!!!!!!    See its code below    !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     
+     fontSize = 32;
+     //Load Score text
+     if(TTF_Init() == -1)
+     cout << "TTF_Init: " << SDL_GetError() << endl;
+     textFont = TTF_OpenFont("Resources/sansation.ttf", fontSize); //Define text font
+     if(textFont == nullptr)
+     cout << "TTF_OpenFont: " << SDL_GetError() << endl;
+     textColor = {255, 255, 255}; // Text color
+     textSurface = TTF_RenderText_Solid(textFont, "Score : " , textColor);
+     if(textSurface == nullptr)
+     cout << "TTF_RenderText_Solid: " << SDL_GetError() << endl;
+     
+     textRect.w = fontSize * 4; // controls the width of the rect
+     textRect.h = fontSize; // controls the height of the rect
+     textRect.x = spriteWidth / 2 - textRect.w / 2;  //controls the rect's x coordinate
+     textRect.y = 15; // controls the rect's y coordinte
+     */
+    
 }
 
 void Board::update(){
+    //Call gems update method
     for(int i = 0; i < 8; i++){
         for (int j = 0; j < 8; j++){
             _board[i][j].update();
         }
     }
-    
 }
 
 void Board::draw(){
-    //Backdrop
+    //Draw Backdrop
     sprite.draw(0, 0);
     
-    //Gems
+    //Draw Gems
     for (int i = 0; i < 8; i++){
         for(int j = 0; j < 8; j++){
             _board[i][j].draw();
         }
     }
-    /*  !!! This was discarded due to memory leaks caused by SDL_TTF !!!
-    //Score Text
+    
+    /*  
+    !!! Text rendering was discarded due to memory leaks caused by SDL_TTF !!!
+    !!!!!!!!!!!!!!!!!!!!    See its code below    !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    
+     //Score Text
     scoreText =("Score : " + to_string(score)).c_str();
     textSurface = TTF_RenderText_Solid(textFont, scoreText, textColor);
     text = SDL_CreateTextureFromSurface(_renderer, textSurface); //Convert text into a texture
@@ -86,13 +96,16 @@ void Board::draw(){
      */
 }
 
+/*
+ * Store currently selected board cell and call gems handling method
+ */
 void Board::processInput( int mouseX, int mouseY, bool click){
     int offsetX = (1024 - 70 * 8) / 2;
     int offsetY = (768 - 70 * 8) / 2;
     
     //Only handle mouse clicks if inside the board area
     if(mouseX > offsetX && mouseX < 1024 - offsetX && mouseY > offsetY && mouseY < 768 - offsetY){
-        //If clicked in a new cell
+        //If clicked in a new cell 
         if((mouseX - offsetX) / 70 != currentColumn || (mouseY - offsetY) / 70 != currentRow || click){
             // Store currently selected cell
             currentColumn = (mouseX - offsetX) / 70;
@@ -106,11 +119,12 @@ void Board::processInput( int mouseX, int mouseY, bool click){
     }
 }
 
+/*
+ * Handle gems actions, i.e., picking up a new gem or, if already picked, swapping with another
+ */
 void Board::swapGems(){
     //Change action type only if selecting a different gem
     swappingGems = !swappingGems;
-    
-    cout << "Swapping gems = " << swappingGems << endl;
     
     if(swappingGems){
         //Store currently selected gem into temp variable
@@ -173,23 +187,9 @@ void Board::swapGems(){
     }
 }
 
-void Board::animateSwap(){
-    animating = true;
-    _board[selectedRow][selectedColumn].arrivedDest = false;
-    _board[currentRow][currentColumn].arrivedDest = false;
-    
-    while (animating){
-        SDL_RenderClear(_renderer);
-        draw();
-        _board[selectedRow][selectedColumn].update(); _board[selectedRow][selectedColumn].draw();
-        _board[currentRow][currentColumn].update(); _board[currentRow][currentColumn].draw();
-        SDL_RenderPresent(_renderer);
-        
-        if(_board[selectedRow][selectedColumn].arrivedDest && _board[currentRow][currentColumn].arrivedDest)
-            animating = false;
-    }
-}
-
+/*
+ * Checks if there's a match between 3 or more gems (horizontal or vertical alignement), updates score according to number of matched gems and sets them as destroyed
+ */
 void Board::findDestroyMatches(){
     destroyGems = true;
     bool foundMatch;
@@ -263,9 +263,9 @@ void Board::findDestroyMatches(){
             }
         }
         
-        //If any gem was destroyed, check for the necessary column drops in order to fill up the board
+        //If any gem was destroyed, call the columns drop function to handle the resultant chain column drops in order to fill up the board with no matches
         if(destroyGems) {
-            
+            //Call method for dropping columns
             dropColumns();
         
             //Update gems own row and column references
@@ -326,7 +326,7 @@ bool Board::matchingSwap(int i, int j){
 
 
 /*
- * Checks if two coordiantes are direct neighbors anf from orthogonal axis
+ * Checks if two coordiantes are direct neighbors and from orthogonal axis
  */
 bool Board::orthogonalSwipe(int x, int y, int a, int b){
     if((abs(x - a) == 1 && abs(y - b) == 0) || (abs(x - a) == 0 && abs(y - b) == 1)){
@@ -335,6 +335,29 @@ bool Board::orthogonalSwipe(int x, int y, int a, int b){
     return false;
 }
 
+/*
+ * Animates the gems swap
+ */
+void Board::animateSwap(){
+    animating = true;
+    _board[selectedRow][selectedColumn].arrivedDest = false;
+    _board[currentRow][currentColumn].arrivedDest = false;
+    
+    while (animating){
+        SDL_RenderClear(_renderer);
+        draw();
+        _board[selectedRow][selectedColumn].update(); _board[selectedRow][selectedColumn].draw();
+        _board[currentRow][currentColumn].update(); _board[currentRow][currentColumn].draw();
+        SDL_RenderPresent(_renderer);
+        
+        if(_board[selectedRow][selectedColumn].arrivedDest && _board[currentRow][currentColumn].arrivedDest)
+            animating = false;
+    }
+}
+
+/*
+ * Prints the current board state to the terminal
+ */
 void Board::printBoard(){
     for (int i = 0; i < 8; i++){
         cout << "i=" << i;

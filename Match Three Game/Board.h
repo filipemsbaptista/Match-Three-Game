@@ -27,32 +27,33 @@ public:
     void draw();
     void processInput(int mouseX, int mouseY, bool click);
     
-    
-    
 private:
     SDL_Renderer* _renderer;
+    
     //Gems matrix
     Gem _board [8][8];
+    
     //Board management variables
     int currentRow, currentColumn, selectedColumn, selectedRow;
     Gem currentGem;
     bool swappingGems, destroyGems;
     
-    void swapGems(), findDestroyMatches(), dropColumns();
+    //Board management methods
+    void swapGems(), findDestroyMatches(), dropColumns(), printBoard();
     bool matchingSwap(int i, int j), orthogonalSwipe(int x, int y, int a, int b);
-    void printBoard();
     
+    //Score
+    int score;
+    
+    //Animations
     bool animating;
     void animateSwap();
     
-    
-    //Background Image Sprite
+    //Sprites
     Sprite sprite;
     const char * spriteFile;
     int spriteWidth, spriteHeight;
     
-    int score;
-    /*
     //Score Text
     int fontSize;
     TTF_Font* textFont;
@@ -61,7 +62,6 @@ private:
     SDL_Texture* text;
     SDL_Rect textRect;
     const char *scoreText;
-     */
 };
 
 #endif /* Board_h */

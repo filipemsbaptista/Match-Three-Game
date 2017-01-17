@@ -19,23 +19,20 @@ using namespace std;
 
 class Sprite {
 
-private:
-    //Renderer
-    SDL_Renderer* _renderer;
-    
-    //Texture
-    SDL_Rect texture_rect;
-    const char * file;
-    
-    int x, y;
-    
 public:
     Sprite();
     Sprite(SDL_Renderer* renderer, const char* spriteFile, int posX, int posY, int width, int height);
     
     void draw(int screenX, int screenY);
     
+private:
+    //Renderer
+    SDL_Renderer* _renderer;
+    
+    //Texture
     SDL_Texture* img;
+    SDL_Rect texture_rect;
+    const char * file;
 };
 
 #endif /* Sprite_hpp */

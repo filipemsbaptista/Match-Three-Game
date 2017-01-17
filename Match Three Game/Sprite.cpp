@@ -12,18 +12,6 @@ Sprite::Sprite(){
 }
 
 Sprite::Sprite(SDL_Renderer* renderer, const char* spriteFile, int posX, int posY, int width, int height){
-    /*
-    //Load sprite image form file
-    image = SDL_LoadBMP(spriteFile);
-  
-    // Part of the sprite file we want to draw on the screen
-    source.x = x;
-    source.y = x;
-    source.w = width;
-    source.h = height;
-    */
-    // --------------------
-    
     _renderer = renderer;
     
     //Create Texture

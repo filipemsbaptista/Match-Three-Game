@@ -21,24 +21,26 @@ void GameManager::init(){
     
     //Create window
     window = SDL_CreateWindow("Match 3 Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL);
+    if(window == nullptr)
+        cout << "ERROR CREATING WINDOW: " << SDL_GetError() << endl;
+    //Create renderer
     renderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED);
+    if(renderer == nullptr)
+        cout << "ERROR CREATING RENDERER: " << SDL_GetError() << endl;
     
     //Initialize mixer
-    if(Mix_OpenAudio( MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+    if(Mix_OpenAudio( MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 2048) == -1)
         cout << "ERROR: " << Mix_GetError() << endl;
     
-    
-    //Load audio files
-    music = Mix_LoadMUS( "Resources/bejeweled.mp3" );     //Background Music
+    //Load background music audio file
+    music = Mix_LoadMUS( "Resources/bejeweled.mp3" );
     if(!music) {
-        printf("Mix_LoadMUS: %s\n", Mix_GetError());
+        cout << "Mix_LoadMUS: %s\n", Mix_GetError();
     }
     
-    /*
     //Play music
     if (Mix_PlayMusic( music, -1 ) == -1)
         cout << "ERROR: Couldn't play music file !" << endl;
-    */
     
     
     //Game management variables
@@ -59,7 +61,6 @@ void GameManager::run(){
 void GameManager::mainLoop(){
     SDL_Event event;
     while(!quitGame){
-        
         // --- INPUT ---
         SDL_PumpEvents();
         while (SDL_PollEvent(&event)){
@@ -75,16 +76,12 @@ void GameManager::mainLoop(){
                     break;
             }
         }
-        
         // ---- UPDATE ----
         _board.update();
         
-        
         // ---- DRAW ----
         SDL_RenderClear(renderer); //Clear the renderer
-
-        _board.draw();
-        
+        _board.draw();  //Draw board and gems sprites
         SDL_RenderPresent(renderer); //Update the renderer
     }
     

@@ -14,13 +14,17 @@
 		93339BDA1E2BE3B400F26895 /* Color-4.png in Copy Files */ = {isa = PBXBuildFile; fileRef = 934D05B01E2BE3400040F87E /* Color-4.png */; };
 		93339BDB1E2BE3B400F26895 /* Color-5.png in Copy Files */ = {isa = PBXBuildFile; fileRef = 934D05B11E2BE3400040F87E /* Color-5.png */; };
 		93339BDC1E2BE3B400F26895 /* bejeweled.mp3 in Copy Files */ = {isa = PBXBuildFile; fileRef = 934D05A91E2BE3110040F87E /* bejeweled.mp3 */; };
-		934D05A71E2BE21A0040F87E /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 934D05A61E2BE21A0040F87E /* SDL2_mixer.framework */; };
-		9368C7521E2841750060A82B /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9368C7501E2841750060A82B /* SDL2_image.framework */; };
-		9368C7531E2841750060A82B /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9368C7511E2841750060A82B /* SDL2.framework */; };
 		93A3CF581E2BF7780076474E /* swipe.mp3 in Copy Files */ = {isa = PBXBuildFile; fileRef = 93A3CF571E2BF7780076474E /* swipe.mp3 */; };
 		93A3CF5A1E2C051F0076474E /* match.mp3 in Copy Files */ = {isa = PBXBuildFile; fileRef = 93A3CF591E2C051F0076474E /* match.mp3 */; };
-		93A3CF5C1E2C0DCD0076474E /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93A3CF5B1E2C0DCD0076474E /* SDL2_ttf.framework */; };
 		93A3CF6B1E2C2F140076474E /* sansation.ttf in Copy Files */ = {isa = PBXBuildFile; fileRef = 93A3CF6A1E2C2F140076474E /* sansation.ttf */; };
+		93C6A1B21E2D8A4000DBE72B /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9368C7501E2841750060A82B /* SDL2_image.framework */; };
+		93C6A1B31E2D8A4000DBE72B /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 934D05A61E2BE21A0040F87E /* SDL2_mixer.framework */; };
+		93C6A1B41E2D8A4000DBE72B /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9368C7511E2841750060A82B /* SDL2.framework */; };
+		93C6A1B81E2D8A7000DBE72B /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C6A1B71E2D8A7000DBE72B /* SDL2_ttf.framework */; };
+		93C6A1B91E2D8CD500DBE72B /* SDL2_ttf.framework in Sources */ = {isa = PBXBuildFile; fileRef = 93C6A1B71E2D8A7000DBE72B /* SDL2_ttf.framework */; };
+		93C6A1BA1E2D8CD500DBE72B /* SDL2_mixer.framework in Sources */ = {isa = PBXBuildFile; fileRef = 934D05A61E2BE21A0040F87E /* SDL2_mixer.framework */; };
+		93C6A1BB1E2D8CD500DBE72B /* SDL2_image.framework in Sources */ = {isa = PBXBuildFile; fileRef = 9368C7501E2841750060A82B /* SDL2_image.framework */; };
+		93C6A1BC1E2D8CD500DBE72B /* SDL2.framework in Sources */ = {isa = PBXBuildFile; fileRef = 9368C7511E2841750060A82B /* SDL2.framework */; };
 		93EBA2321E21482F0005A186 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 931FCF511E2114F500CDF030 /* main.cpp */; };
 		93EBA2361E214CD80005A186 /* GameManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93EBA2341E214CD80005A186 /* GameManager.cpp */; };
 		93EBA23A1E2280BA0005A186 /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93EBA2391E2280BA0005A186 /* Board.cpp */; };
@@ -66,8 +70,8 @@
 		9368C7511E2841750060A82B /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = "../../Library/Developer/Xcode/DerivedData/Match_Three_Game-dfdrjebfkrtasggeylktwzhslbnd/Build/Products/Release/SDL2.framework"; sourceTree = "<group>"; };
 		93A3CF571E2BF7780076474E /* swipe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = swipe.mp3; sourceTree = "<group>"; };
 		93A3CF591E2C051F0076474E /* match.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = match.mp3; sourceTree = "<group>"; };
-		93A3CF5B1E2C0DCD0076474E /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
 		93A3CF6A1E2C2F140076474E /* sansation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sansation.ttf; path = "Match Three Game/fonts/sansation.ttf"; sourceTree = "<group>"; };
+		93C6A1B71E2D8A7000DBE72B /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = "../../Library/Developer/Xcode/DerivedData/Match_Three_Game-dfdrjebfkrtasggeylktwzhslbnd/Build/Products/Release/SDL2_ttf.framework"; sourceTree = "<group>"; };
 		93EBA2341E214CD80005A186 /* GameManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameManager.cpp; sourceTree = "<group>"; };
 		93EBA2371E214D300005A186 /* GameManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
 		93EBA2381E2268DD0005A186 /* Board.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Board.h; sourceTree = "<group>"; };
@@ -83,10 +87,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93A3CF5C1E2C0DCD0076474E /* SDL2_ttf.framework in Frameworks */,
-				9368C7521E2841750060A82B /* SDL2_image.framework in Frameworks */,
-				9368C7531E2841750060A82B /* SDL2.framework in Frameworks */,
-				934D05A71E2BE21A0040F87E /* SDL2_mixer.framework in Frameworks */,
+				93C6A1B81E2D8A7000DBE72B /* SDL2_ttf.framework in Frameworks */,
+				93C6A1B21E2D8A4000DBE72B /* SDL2_image.framework in Frameworks */,
+				93C6A1B31E2D8A4000DBE72B /* SDL2_mixer.framework in Frameworks */,
+				93C6A1B41E2D8A4000DBE72B /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,7 +136,7 @@
 		931FCF581E2117F700CDF030 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				93A3CF5B1E2C0DCD0076474E /* SDL2_ttf.framework */,
+				93C6A1B71E2D8A7000DBE72B /* SDL2_ttf.framework */,
 				934D05A61E2BE21A0040F87E /* SDL2_mixer.framework */,
 				9368C7501E2841750060A82B /* SDL2_image.framework */,
 				9368C7511E2841750060A82B /* SDL2.framework */,
@@ -230,6 +234,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93C6A1B91E2D8CD500DBE72B /* SDL2_ttf.framework in Sources */,
+				93C6A1BA1E2D8CD500DBE72B /* SDL2_mixer.framework in Sources */,
+				93C6A1BB1E2D8CD500DBE72B /* SDL2_image.framework in Sources */,
+				93C6A1BC1E2D8CD500DBE72B /* SDL2.framework in Sources */,
 				93EBA23A1E2280BA0005A186 /* Board.cpp in Sources */,
 				93EBA23D1E2289F20005A186 /* Gem.cpp in Sources */,
 				93EBA2401E228BAE0005A186 /* Sprite.cpp in Sources */,
@@ -333,10 +341,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LOCAL_LIBRARY_DIR)/Frameworks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				HEADER_SEARCH_PATHS = (
 					"/Library/Frameworks/SDL2.framework/headers/**",
 					"/Library/Frameworks/SDL2_image.framework/headers/**",
@@ -354,10 +359,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(LOCAL_LIBRARY_DIR)/Frameworks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				HEADER_SEARCH_PATHS = (
 					"/Library/Frameworks/SDL2.framework/headers/**",
 					"/Library/Frameworks/SDL2_image.framework/headers/**",
